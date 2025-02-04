@@ -10,20 +10,20 @@ const App = () => {
   const [avg, setAverage] = useState(0);
 
   const handleGoodVotes = () => {
-    setGood(good + 1);
-    setTotal(total + 1);
-    setAverage(avg + 1);
+    setGood((prevGood) => prevGood + 1);
+    setTotal((prevTotal) => prevTotal + 1);
+    setAverage((prevAvg) => prevAvg + 1);
   };
 
   const handleNeutralVotes = () => {
-    setNeutral(neutral + 1);
-    setTotal(total + 1);
+    setNeutral((prevNeutral) => prevNeutral + 1);
+    setTotal((prevTotal) => prevTotal + 1);
   };
 
   const handleBadVotes = () => {
-    setBad(bad + 1);
-    setTotal(total + 1);
-    setAverage(avg - 1);
+    setBad((prevBad) => prevBad + 1);
+    setTotal((prevTotal) => prevTotal + 1);
+    setAverage((prevAvg) => prevAvg - 1);
   };
 
   return (

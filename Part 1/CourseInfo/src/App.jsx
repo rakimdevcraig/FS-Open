@@ -1,49 +1,6 @@
-const Header = (props) => {
-  return (
-    <div>
-      <h1>{props.courseName}</h1>
-    </div>
-  );
-};
-
-const Part = (props) => {
-  return (
-    <div>
-      <p>
-        {props.part} {props.exercises}
-      </p>
-    </div>
-  );
-};
-
-const Content = (props) => {
-  return (
-    <div>
-      <Part part={props.courses[0].name} exercises={props.courses[0].name} />
-      <Part
-        part={props.courses[1].name}
-        exercises={props.courses[1].exercises}
-      />
-      <Part
-        part={props.courses[2].name}
-        exercises={props.courses[2].exercises}
-      />
-    </div>
-  );
-};
-
-const Total = (props) => {
-  return (
-    <div>
-      <p>
-        Number of exercises{" "}
-        {props.courses[0].exercises +
-          props.courses[1].exercises +
-          props.courses[2].exercises}
-      </p>
-    </div>
-  );
-};
+import Header from "./Header.jsx";
+import Total from "./Total.jsx";
+import Content from "./Content.jsx";
 
 const App = () => {
   const course = {

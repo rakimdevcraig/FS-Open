@@ -8,10 +8,13 @@ function List(props) {
     <div>
       <ul>
         {filtered.map((person, id) => (
-          <p key={id}>
+          <li key={id}>
             {person.name}&nbsp;
-            {person.number}
-          </p>
+            {person.number}&nbsp;
+            <button onClick={() => props.handleDelete(person.id, person.name)}>
+              delete
+            </button>
+          </li>
         ))}
       </ul>
     </div>

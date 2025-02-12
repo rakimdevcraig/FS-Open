@@ -19,37 +19,43 @@ const App = () => {
 
   const addName = (e) => {
     e.preventDefault();
-    const nameArray = persons.map((person) => person.name);
-    const nameObject = {
-      name: newName,
-      number: String(newNumber),
-    };
-    if (nameArray.includes(newName)) {
-      console.log("exists edit it");
-      const entryToEdit = persons.find((person) => person.name === newName);
-      const editedEntry = {
-        ...entryToEdit,
+    //Should I wrap the update & the create new into their own functions and then
+    //persontoUpdate !== undefined ? update function : add function
+    const personToUpdate = filteredNameList[0];
+    const personUpdated = { ...personToUpdate, number: newNumber };
+    //can i do if(personToUpdate)?
+    if (personToUpdate !== undefined) {
+      if (
+        confirm(
+          `${newName} is already added to phonebook, replace the old number with a new one?`
+        )
+      ) {
+        phoneNumberServices
+          .update(personUpdated.id, personUpdated)
+          .then((updatedEntry) => {
+            //better to do the map in a variable and
+            //then set the state with that variable?
+            const listWithEdit = persons.map((person) =>
+              person.id === updatedEntry.id ? updatedEntry : person
+            );
+            setPersons(listWithEdit);
+          })
+          .catch((err) => console.log(err));
+      }
+    } else {
+      const newEntry = {
+        name: newName,
         number: String(newNumber),
       };
-      const listEdited = persons.map((p) => {
-        return p.name === editedEntry.name &&
-          confirm(
-            `${newName} is already added to phonebook, replace the old number with a new one?`
-          )
-          ? editedEntry
-          : p;
-      });
-
       phoneNumberServices
-        .update(editedEntry.id, editedEntry)
+        .create(newEntry)
         .then((returnedEntry) => {
           console.log(returnedEntry);
-          setPersons(listEdited);
-        });
-    } else {
-      phoneNumberServices.create(nameObject).then((response) => {
-        setPersons(persons.concat(nameObject));
-      });
+          console.log(persons);
+          const listWithNewItem = persons.concat(returnedEntry);
+          setPersons(listWithNewItem);
+        })
+        .catch((err) => console.log(err));
     }
   };
 

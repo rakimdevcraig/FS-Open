@@ -21,11 +21,6 @@
       "id": "4"
     },
     {
-      "id": "cdbb",
-      "name": "luka doncic",
-      "number": "77"
-    },
-    {
       "id": "d7cf",
       "name": "big 23",
       "number": "623"
@@ -46,16 +41,6 @@
       "number": "617345677"
     },
     {
-      "id": "f151",
-      "name": "Arto Hella",
-      "number": "21"
-    },
-    {
-      "id": "6b46",
-      "name": "Standy ",
-      "number": "666"
-    },
-    {
       "id": "a4b6",
       "name": "Keem",
       "number": "33"
@@ -66,24 +51,24 @@
       "number": "34"
     },
     {
-      "id": "c761",
-      "name": "Arto Hellas ",
-      "number": "5"
-    },
-    {
       "id": "1681",
       "name": "arto hellas",
       "number": "ff"
     },
     {
-      "id": "292b",
-      "name": "Standy",
-      "number": "2222"
-    },
-    {
       "id": "c36a",
       "name": "keem",
       "number": "3355"
+    },
+    {
+      "id": "0ef3",
+      "name": "Standy",
+      "number": "2323"
+    },
+    {
+      "id": "431c",
+      "name": "Kobe Bean ",
+      "number": "24"
     }
   ]
 }

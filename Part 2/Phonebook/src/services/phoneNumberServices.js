@@ -8,17 +8,17 @@ const getAll = () => {
 
 const create = (nameObject) => {
   const request = axios.post(baseUrl, nameObject);
-  return request.then((response) => response).catch((err) => err);
+  return request.then((response) => response.data).catch((err) => err);
 };
 
 const update = (id, nameObject) => {
   const request = axios.put(`${baseUrl}/${id}`, nameObject);
-  return request.then((response) => response).catch((err) => err);
+  return request.then((response) => response.data).catch((err) => err);
 };
 
 const remove = (id) => {
   const request = axios.delete(`${baseUrl}/${id}`);
-  return request.then((response) => response).catch((err) => err);
+  return request.then((response) => response.data).catch((err) => err);
 };
 
 export default {

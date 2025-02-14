@@ -3,12 +3,14 @@ import List from "./Components/List";
 import Search from "./Components/Search";
 import Form from "./Components/Form";
 import phoneNumberServices from "./services/phoneNumberServices";
+import Notification from "./Components/Notification";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [nameSearch, setNameSearch] = useState("");
+  const [notificationMsg, setNotificationMsg] = useState(null);
 
   const hook = () => {
     phoneNumberServices.getAll().then((response) => {
@@ -21,6 +23,9 @@ const App = () => {
     e.preventDefault();
     //Should I wrap the update & the create new into their own functions and then
     //persontoUpdate !== undefined ? update function : add function
+    const filteredNameList = persons.filter(
+      (person) => person.name === newName
+    );
     const personToUpdate = filteredNameList[0];
     const personUpdated = { ...personToUpdate, number: newNumber };
     //can i do if(personToUpdate)?
@@ -33,14 +38,29 @@ const App = () => {
         phoneNumberServices
           .update(personUpdated.id, personUpdated)
           .then((updatedEntry) => {
-            //better to do the map in a variable and
-            //then set the state with that variable?
+            setNotificationMsg(` ${personUpdated.name} was Updated`);
+            setTimeout(() => {
+              setNotificationMsg(null);
+            }, 5000);
+            // better to do the map in a variable and
+            // then set the state with that variable?
             const listWithEdit = persons.map((person) =>
               person.id === updatedEntry.id ? updatedEntry : person
             );
             setPersons(listWithEdit);
           })
-          .catch((err) => console.log(err));
+          .catch((error) => {
+            console.log(error);
+            setPersons(
+              persons.filter((person) => person.id !== personUpdated.id)
+            );
+            setNotificationMsg(
+              ` ${personUpdated.name} was already deleted from server`
+            );
+            setTimeout(() => {
+              setNotificationMsg(null);
+            }, 5000);
+          });
       }
     } else {
       const newEntry = {
@@ -51,11 +71,20 @@ const App = () => {
         .create(newEntry)
         .then((returnedEntry) => {
           console.log(returnedEntry);
-          console.log(persons);
+          setNotificationMsg(` ${newEntry.name} was Updated`);
+          setTimeout(() => {
+            setNotificationMsg(null);
+          }, 5000);
           const listWithNewItem = persons.concat(returnedEntry);
           setPersons(listWithNewItem);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setNotificationMsg(` ${err.response.data.error}`);
+          setTimeout(() => {
+            setNotificationMsg(null);
+          }, 5000);
+        });
     }
   };
 
@@ -90,6 +119,7 @@ const App = () => {
         handleNameSearchChange={handleNameSearchChange}
       />
       <h2>Add a new</h2>
+      <Notification message={notificationMsg} />
       <Form
         addName={addName}
         newName={newName}

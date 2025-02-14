@@ -2,7 +2,7 @@
   "persons": [
     {
       "name": "Arto Hellas",
-      "number": "3",
+      "number": "6",
       "id": "1"
     },
     {
@@ -36,16 +36,6 @@
       "number": "123445"
     },
     {
-      "id": "3bbc",
-      "name": "arto",
-      "number": "617345677"
-    },
-    {
-      "id": "a4b6",
-      "name": "Keem",
-      "number": "33"
-    },
-    {
       "id": "24fb",
       "name": "johnnn",
       "number": "34"
@@ -56,19 +46,14 @@
       "number": "ff"
     },
     {
-      "id": "c36a",
-      "name": "keem",
-      "number": "3355"
+      "id": "b3ef",
+      "name": "ab",
+      "number": "1"
     },
     {
-      "id": "0ef3",
-      "name": "Standy",
-      "number": "2323"
-    },
-    {
-      "id": "431c",
-      "name": "Kobe Bean ",
-      "number": "24"
+      "id": "72ed",
+      "name": "ae",
+      "number": "20"
     }
   ]
 }
